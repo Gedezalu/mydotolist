@@ -1,21 +1,23 @@
 <?php
+$route= (isset($_Get["route"]))? $_Get["route"]: "accueil";
+
+switch($route){
+case "accueil" : $template = "accueil.html";
+break;
+case "nouveauclient" : $template = "nouveauclient.html";
+break;
+default : $template = "accueil.html";
+};
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>Bienvenue sur Mytodolist </h1>
-        <h2> Se connecter </h2>
-    <form method="post">
-    <input type="text" id="pseudo" name="pseudo" placeholder="Entrez votre pseudonyme"><br>
-    <input type="text" id="motdepasse" name="motdepasse" placeholder="Entrez votre mot de passe"><br>
-    <button>Se connecter</button>
-    </form>
-    <span>Vous n'êtes pas encore membre de Mytodolist ?</span>
-    <button><a href="nouveauclient.php">Nouveau Membre </a> </button>
+   <?php require "template/$template"; ?>
 </body>
 </html>

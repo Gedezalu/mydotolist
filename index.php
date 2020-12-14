@@ -8,14 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> S'enregistrer en tant que nouveau membre</h1>
+    <h1>Bienvenue sur Mytodolist </h1>
+        <h2> Se connecter </h2>
     <form method="post">
     <input type="text" id="pseudo" name="pseudo" placeholder="Entrez votre pseudonyme"><br>
-    <input type="text" id="mail" name="mail" placeholder="Entrez votre adresse e-mail"><br>
-    <input type="text" id="mail2" name="mail2" placeholder="Confirmez votre adresse e-mail"><br>
     <input type="text" id="motdepasse" name="motdepasse" placeholder="Entrez votre mot de passe"><br>
-    <input type="text" id="motdepasse2" name="motdepasse2" placeholder="Confirmez votre mot de passe"><br>
-    <button> Validez votre inscription</button>
+    <button>Se connecter</button>
     </form>
+    <span>Vous n'êtes pas encore membre de Mytodolist ?</span>
+    <button><a href="nouveauclient.php">Nouveau Membre </a> </button>
 </body>
 </html>

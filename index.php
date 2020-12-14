@@ -1,6 +1,6 @@
 <?php
-$route= (isset($_Get["route"]))? $_Get["route"]: "accueil";
-
+$route= (isset($_GET["route"]))? $_GET["route"]: "accueil";
+var_dump($_GET);
 switch($route){
 case "accueil" : $template = "accueil.html";
 break;

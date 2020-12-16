@@ -14,7 +14,7 @@ function ajoutUser() {
     require_once "model/Utilisateur.php";
     $users = json_decode(file_get_contents("datas/utilisateurs.json"));
     $count = count($users);
-    $erreurpseudo = "Le pseudonyme choisit est déjà utilisé.";
+    $erreurinscription = "Une erreur est survenue pendant la saisie. Verifiez que tous les champs aient été saisie et que le mot de passe et sa confirmation soient bien identiques.";
     $validationpseudo = false;
 
     //condition permettant d'ajouter un id_utilisateur unique à chaque ajout de nouveau utilisateur.
@@ -23,16 +23,19 @@ function ajoutUser() {
     }else {
         $nouvelleID = 0; 
     };
-    //Fin de la codition de nouvel utilisateur
-// Utilisation d'une boucle for pour verifier que les pseudos soient differenets'
+    //Fin de la condition de nouvel utilisateur
+
+// Utilisation d'une boucle for pour verifier que les pseudos soient differents'
     for ($i = 0; $i < $count; $i++){
         var_dump($users[$i]->pseudo);
         var_dump($_POST["pseudo"]);
         
         if($_POST["pseudo"] == $users[$i]->pseudo){
-            $validationpseudo = true;
-          
-};
+        $validationpseudo = 1;
+          }else {
+              $validationpseudo = true;
+          }
+
     };
     // verification que les champs ont été rempli et que les mots de passes sont bien identiques
     if (!empty($_POST["pseudo"]) && !empty($_POST["motdepasse"]) && !empty($_POST["motdepasse2"]) && $_POST["motdepasse"] === $_POST["motdepasse2"] &&  $validationpseudo = true ){
@@ -44,8 +47,10 @@ function ajoutUser() {
     header("Location:index.php?route=accueil");
     exit;
 }else{
-    header("Location:index.php?route=accueil");
-    echo "Une erreur est survenue pendant la saisie. Verifiez que tous les champs aient été saisie et que le mot de passe et sa confirmation soient bien identiques.";
+    $_SESSION["newsession"] =  $erreurinscription;
+    header("Location:index.php?route=nouveauclient");
+    var_dump( $_SESSION["newsession"]);
+    echo $_SESSION["newsession"];
 }
 };
 

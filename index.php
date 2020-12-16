@@ -9,17 +9,33 @@ case "ajoutUser" : ajoutUser();
 break;
 default : $template = "accueil.html";
 }
+session_start();
 function ajoutUser() {
     require_once "model/Utilisateur.php";
     $users = json_decode(file_get_contents("datas/utilisateurs.json"));
+    $count = count($users);
+    $erreurpseudo = "Le pseudonyme choisit est déjà utilisé.";
+    $validationpseudo = false;
+
+    //condition permettant d'ajouter un id_utilisateur unique à chaque ajout de nouveau utilisateur.
    if (count($users) > 0 ){
         $nouvelleID = $users[array_key_last($users)]->id_utilisateur + 1;
-        // On a bien un dernier élément, on peux donc ajouter 1 à son id
     }else {
-        $nouvelleID = 0; // Là ok
+        $nouvelleID = 0; 
+    };
+    //Fin de la codition de nouvel utilisateur
+// Utilisation d'une boucle for pour verifier que les pseudos soient differenets'
+    for ($i = 0; $i < $count; $i++){
+        var_dump($users[$i]->pseudo);
+        var_dump($_POST["pseudo"]);
+        
+        if($_POST["pseudo"] == $users[$i]->pseudo){
+            $validationpseudo = true;
+          
+};
     };
     // verification que les champs ont été rempli et que les mots de passes sont bien identiques
-    if (!empty($_POST["pseudo"]) && !empty($_POST["motdepasse"]) && !empty($_POST["motdepasse2"]) && $_POST["motdepasse"] === $_POST["motdepasse2"] ){
+    if (!empty($_POST["pseudo"]) && !empty($_POST["motdepasse"]) && !empty($_POST["motdepasse2"]) && $_POST["motdepasse"] === $_POST["motdepasse2"] &&  $validationpseudo = true ){
 
     $user = new Utilisateur($_POST["pseudo"], $_POST["motdepasse"], $nouvelleID);
     $user->save_user();
